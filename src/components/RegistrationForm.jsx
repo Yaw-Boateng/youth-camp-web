@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 import { db } from "../config/firebase";
 import { toast } from "react-toastify";
 import { useAuth } from "../contexts/AuthContext";
@@ -37,6 +44,7 @@ export default function RegistrationForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     try {
       if (!currentUser) {
         toast.error("You must be logged in to register a participant.");
@@ -44,12 +52,38 @@ export default function RegistrationForm() {
         return;
       }
 
-      await addDoc(collection(db, "participants"), {
+      // 1. Create a reference to the 'participants' collection
+      const participantsRef = collection(db, "participants");
+
+      // 2. Create a query to check for an existing document with the same full name, birth month, and birth date
+      const q = query(
+        participantsRef,
+        where("fullName", "==", formData.fullName),
+        where("birthMonth", "==", formData.birthMonth),
+        where("birthDate", "==", formData.birthDate)
+      );
+
+      // 3. Execute the query
+      const querySnapshot = await getDocs(q);
+
+      // 4. Check if any documents were found
+      if (!querySnapshot.empty) {
+        // A duplicate was found
+        toast.error(
+          `${formData.fullName} is already registered. Please check the participant list.`
+        );
+        setLoading(false);
+        return; // Stop the function here
+      }
+
+      // 5. If no duplicates are found, proceed with adding the new document
+      await addDoc(participantsRef, {
         ...formData,
         registeredAt: serverTimestamp(),
-        registeredBy: currentUser.uid, // This is the crucial line
+        registeredBy: currentUser.uid,
       });
-      // ... (rest of handleSubmit)
+
+      // Show success message and reset form
       toast.success(`${formData.fullName} has been successfully registered!`);
       setFormData({
         fullName: "",
@@ -65,8 +99,9 @@ export default function RegistrationForm() {
         specialNeeds: "",
       });
     } catch (error) {
-      // ... (error handling)
-      toast.error("Registration failed. Please try again.",error);
+      console.error("Registration failed:", error);
+      toast.error(`Registration failed. Please try again.
+      Error: ${error.message}`);
     } finally {
       setLoading(false);
     }
