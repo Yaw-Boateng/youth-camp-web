@@ -1,7 +1,8 @@
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import  { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import FreeRouteNavbar from "./FreeRouteNavbar";
+import { Link } from "react-router-dom";
 
 // A custom hook to handle the countdown logic
 const useCountdown = (targetDate) => {
@@ -34,8 +35,10 @@ const getReturnValues = (countDown) => {
   return [days, hours, minutes, seconds];
 };
 
-// Main App component
-const App = () => {
+
+
+//  Home component
+export default function Home () {
   // Refs for GSAP animations
   const navRef = useRef(null);
   const heroAnim1Ref = useRef(null);
@@ -289,6 +292,8 @@ const App = () => {
     };
   }, []);
 
+  
+
   return (
     <div className="font-['Nimbus_Sans_L'] w-full antialiased overflow-x-hidden">
       {/* Tailwind CSS CDN is kept for simplicity */}
@@ -377,9 +382,9 @@ const App = () => {
               >
                         <ChevronDownIcon className="h-10 w-10 text-gray-500" />
               </div>
-              <h3 className="font-light text-gray-500 capitalize">
+              <Link to="/gallery" className="font-light text-gray-500 capitalize">
                 visit our gallery.
-              </h3>
+              </Link>
             </div>
           </div>
         </div>
@@ -525,4 +530,3 @@ const App = () => {
   );
 };
 
-export default App;

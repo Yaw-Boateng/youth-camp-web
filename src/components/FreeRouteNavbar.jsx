@@ -65,7 +65,7 @@ export default function FreeRouteNavbar () {
         <div className="hidden md:flex gap-4 md:gap-8 nav-links">
           <Link className="font-extrabold text-sm md:text-base text-gray-900 no-underline hover:text-blue-600 transition-colors duration-300" to="/home">Home</Link>
           <Link className="font-extrabold text-sm md:text-base text-gray-900 no-underline hover:text-blue-600 transition-colors duration-300" to="/news">News</Link>
-          <Link className="font-extrabold text-sm md:text-base text-gray-900 no-underline hover:text-blue-600 transition-colors duration-300" to="/">Media</Link>
+          <Link className="font-extrabold text-sm md:text-base text-gray-900 no-underline hover:text-blue-600 transition-colors duration-300" to="/media">Media</Link>
         </div>
 
         {/* Centered logo/main link */}
@@ -73,7 +73,7 @@ export default function FreeRouteNavbar () {
 
         {/* Right-aligned login link and mobile menu toggle */}
         <div className="flex items-center gap-4 md:gap-8">
-          <Link className="font-extrabold text-sm md:text-base text-gray-900 no-underline hover:text-blue-600 transition-colors duration-300" Link="/login">Login</Link>
+          <Link className="font-extrabold text-sm md:text-base text-gray-900 no-underline hover:text-blue-600 transition-colors duration-300" to="/login">Login</Link>
 
           {/* Mobile menu toggle for smaller screens */}
           <button
@@ -96,7 +96,7 @@ export default function FreeRouteNavbar () {
           <div className="flex flex-col items-center gap-6 py-8 px-4">
             <Link className="font-extrabold text-xl text-gray-900 no-underline hover:text-blue-600 transition-colors duration-300 mobile-link" to="/home">Home</Link>
             <Link className="font-extrabold text-xl text-gray-900 no-underline hover:text-blue-600 transition-colors duration-300 mobile-link" to="/news">News</Link>
-            <Link className="font-extrabold text-xl text-gray-900 no-underline hover:text-blue-600 transition-colors duration-300 mobile-link" to="/">Media</Link>
+            <Link className="font-extrabold text-xl text-gray-900 no-underline hover:text-blue-600 transition-colors duration-300 mobile-link" to="/media">Media</Link>
             <Link className="font-extrabold text-xl text-gray-900 no-underline hover:text-blue-600 transition-colors duration-300 mobile-link" to="/login">Login</Link>
           </div>
         </div>

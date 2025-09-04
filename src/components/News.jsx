@@ -70,7 +70,6 @@ export default function News() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center p-4 bg-white font-['Nimbus_Sans_L']">
-        <script src="https://cdn.tailwindcss.com"></script>
         <div className="text-center text-gray-900">
           <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-400 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading news and updates...</p>
