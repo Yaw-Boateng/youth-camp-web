@@ -3,6 +3,7 @@ import { Menu, Transition, Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Navbar() {
   const { currentUser, logout } = useAuth();
@@ -13,6 +14,7 @@ export default function Navbar() {
     try {
       await logout();
       navigate("/login");
+      toast.success("Logged out successfully.");
     } catch (error) {
       console.error("Failed to log out:", error);
     }
