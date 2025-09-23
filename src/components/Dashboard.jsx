@@ -99,16 +99,15 @@ export default function Dashboard() {
       const participantRef = doc(db, "participants", editingParticipant.id);
       await updateDoc(participantRef, {
         fullName: editingParticipant.fullName,
-        age: editingParticipant.age,
-        contactNumber: editingParticipant.contactNumber,
-        branchName: editingParticipant.branchName,
-        emergencyContact: editingParticipant.emergencyContact,
-        parentGuardianName: editingParticipant.parentGuardianName,
-        parentGuardianContact: editingParticipant.parentGuardianContact,
-        birthDate: editingParticipant.birthDate,
-        birthMonth: editingParticipant.birthMonth,
-        specialNeeds: editingParticipant.specialNeeds,
         gender: editingParticipant.gender,
+        phoneNumber: editingParticipant.phoneNumber,
+        email: editingParticipant.email,
+        branch: editingParticipant.branch,
+        emergencyContact: editingParticipant.emergencyContact,
+        category: editingParticipant.category,
+        birthDate: editingParticipant.birthDate, // full date string
+        arrivalDay: editingParticipant.arrivalDay,
+        specialNeeds: editingParticipant.specialNeeds,
       });
 
       // Update local state with the new data
@@ -396,53 +395,7 @@ export default function Dashboard() {
                   name="fullName"
                   value={editingParticipant.fullName}
                   onChange={handleEditChange}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-                />
-              </div>
-
-              {/* Birthday */}
-              <div className="flex gap-2">
-                <div className="flex-1">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Birth Month
-                  </label>
-                  <input
-                    type="number"
-                    name="birthMonth"
-                    min="1"
-                    max="12"
-                    value={editingParticipant.birthMonth}
-                    onChange={handleEditChange}
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-                  />
-                </div>
-                <div className="flex-1">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">
-                    Birth Date
-                  </label>
-                  <input
-                    type="number"
-                    name="birthDate"
-                    min="1"
-                    max="31"
-                    value={editingParticipant.birthDate}
-                    onChange={handleEditChange}
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-                  />
-                </div>
-              </div>
-
-              {/* Age */}
-              <div>
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  Age
-                </label>
-                <input
-                  type="number"
-                  name="age"
-                  value={editingParticipant.age}
-                  onChange={handleEditChange}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
                 />
               </div>
 
@@ -455,7 +408,7 @@ export default function Dashboard() {
                   name="gender"
                   value={editingParticipant.gender}
                   onChange={handleEditChange}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
                 >
                   <option value="">Select Gender</option>
                   <option value="Male">Male</option>
@@ -463,31 +416,45 @@ export default function Dashboard() {
                 </select>
               </div>
 
-              {/* Branch Name */}
+              {/* Phone Number */}
+              <div>
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  name="phoneNumber"
+                  value={editingParticipant.phoneNumber}
+                  onChange={handleEditChange}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+                />
+              </div>
+
+              {/* Email */}
+              <div>
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={editingParticipant.email}
+                  onChange={handleEditChange}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+                />
+              </div>
+
+              {/* Branch */}
               <div>
                 <label className="block text-gray-700 text-sm font-bold mb-2">
                   Branch
                 </label>
                 <input
                   type="text"
-                  name="branchName"
-                  value={editingParticipant.branchName}
+                  name="branch"
+                  value={editingParticipant.branch}
                   onChange={handleEditChange}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
-                />
-              </div>
-
-              {/* Contact Number */}
-              <div>
-                <label className="block text-gray-700 text-sm font-bold mb-2">
-                  Contact Number
-                </label>
-                <input
-                  type="tel"
-                  name="contactNumber"
-                  value={editingParticipant.contactNumber}
-                  onChange={handleEditChange}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
                 />
               </div>
 
@@ -501,35 +468,53 @@ export default function Dashboard() {
                   name="emergencyContact"
                   value={editingParticipant.emergencyContact}
                   onChange={handleEditChange}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
                 />
               </div>
 
-              {/* Parent/Guardian Name */}
+              {/* Category */}
               <div>
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                  Parent/Guardian Name
+                  Category
+                </label>
+                <select
+                  name="category"
+                  value={editingParticipant.category}
+                  onChange={handleEditChange}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+                >
+                  <option value="">Select Category</option>
+                  <option value="Sunday School">Sunday School</option>
+                  <option value="Teen">Teen</option>
+                  <option value="Young Adult">Young Adult</option>
+                </select>
+              </div>
+
+              {/* Birth Date */}
+              <div>
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Birth Date
                 </label>
                 <input
-                  type="text"
-                  name="parentGuardianName"
-                  value={editingParticipant.parentGuardianName}
+                  type="date"
+                  name="birthDate"
+                  value={editingParticipant.birthDate}
                   onChange={handleEditChange}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
                 />
               </div>
 
-              {/* Parent/Guardian Contact */}
+              {/* Arrival Day */}
               <div>
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                  Parent/Guardian Contact
+                  Arrival Day
                 </label>
                 <input
-                  type="tel"
-                  name="parentGuardianContact"
-                  value={editingParticipant.parentGuardianContact}
+                  type="date"
+                  name="arrivalDay"
+                  value={editingParticipant.arrivalDay}
                   onChange={handleEditChange}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
                 />
               </div>
 
@@ -543,7 +528,7 @@ export default function Dashboard() {
                   rows="3"
                   value={editingParticipant.specialNeeds}
                   onChange={handleEditChange}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
                 ></textarea>
               </div>
 
@@ -552,14 +537,11 @@ export default function Dashboard() {
                 <button
                   type="button"
                   onClick={handleCancelEdit}
-                  className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors duration-200"
+                  className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
                 >
                   Cancel
                 </button>
-                <button
-                  type="submit"
-                  className="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors duration-200"
-                >
+                <button className="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded">
                   Save Changes
                 </button>
               </div>
