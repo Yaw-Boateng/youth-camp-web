@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import MediaPage from './components/MediaPage';
 import Gallery from './components/Gallery';
 import LandingPage from './components/LandingPage';
+import AdminDashboard from './components/AdminDashboard';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
             <Route path="/landing-page" element={<LandingPage />} />
             <Route path="/media" element={<MediaPage />} />
             <Route path="/gallery" element={<Gallery />} />
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
             <Route path="/" element={<Navigate to="/landing-page" />} />
             <Route
               path="/dashboard"
