@@ -35,13 +35,13 @@ export default function HeroSection() {
 
         <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
           <a
-            href="#announcements"
+            href="/news"
             className="px-6 py-3 rounded-full text-sm font-semibold text-white border border-white/20 hover:bg-white/10 transition"
           >
             View Announcements
           </a>
           <a
-            href="#media"
+            href="/media"
             className="px-6 py-3 rounded-full text-sm font-semibold text-white bg-blue-700/50 hover:bg-blue-700/80 transition"
           >
             Explore Media
