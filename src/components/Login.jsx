@@ -39,7 +39,8 @@ export default function Login() {
         <div className="text-center">
           {/* Logo placeholder */}
           <div className="mx-auto h-24 w-24 bg-white/10 backdrop-blur-sm rounded-3xl flex items-center justify-center mb-6 shadow-2xl">
-            <img src="public\GAYM_LOGO.PNG" alt="Logo" className="h-16 w-16 object-contain" />
+            <img src="/GAYM_LOGO.PNG" alt="Logo" className="h-16 w-16 object-contain" />
+
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white">Youth Camp 2025</h2>
           <p className="mt-2 text-sm sm:text-base text-gray-200">
