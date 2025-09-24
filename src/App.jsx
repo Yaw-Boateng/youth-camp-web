@@ -8,9 +8,10 @@ import News from './components/News';
 import Navbar from './components/Navbar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Home from './components/Home';
+// import Home from './components/Home';
 import MediaPage from './components/MediaPage';
 import Gallery from './components/Gallery';
+import LandingPage from './components/LandingPage';
 
 
 function App() {
@@ -32,10 +33,10 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/news" element={<News />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/landing-page" element={<LandingPage />} />
             <Route path="/media" element={<MediaPage />} />
             <Route path="/gallery" element={<Gallery />} />
-            <Route path="/" element={<Navigate to="/home" />} />
+            <Route path="/" element={<Navigate to="/landing-page" />} />
             <Route
               path="/dashboard"
               element={

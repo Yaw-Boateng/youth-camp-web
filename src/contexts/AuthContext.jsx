@@ -2,7 +2,9 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import { 
   signInWithEmailAndPassword, 
   signOut, 
-  onAuthStateChanged 
+  onAuthStateChanged, 
+  setPersistence, 
+  browserSessionPersistence 
 } from 'firebase/auth';
 import { auth } from '../config/firebase';
 
@@ -16,14 +18,20 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // ✅ Login with session-only persistence
   function login(email, password) {
-    return signInWithEmailAndPassword(auth, email, password);
+    return setPersistence(auth, browserSessionPersistence)
+      .then(() => {
+        return signInWithEmailAndPassword(auth, email, password);
+      });
   }
 
+  // ✅ Logout
   function logout() {
     return signOut(auth);
   }
 
+  // ✅ Listen to auth state changes
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
